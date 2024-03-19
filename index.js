@@ -1,4 +1,9 @@
 // A user enters the website and finds a list of the names, dates, times, locations, and descriptions of all the parties that are happening.
+// attach COHORT identifier & API_URL
+// store event information
+// fetch event info using API
+// parse using Json
+// render stored event information
 
 /* event names, dates/times, locations, & description
 {
@@ -10,11 +15,6 @@
   }
   */
 
-// attach base URL w/ cohort identifier
-// sync API/render
-// create event resources API (x4)
-// created return response
-// include "fetch"
 
 const COHORT = "2402-FTB-ET-WEB-FT";
 const API_URL = `https://fsa-crud-2aa9294fe819.herokuapp.com/api/${COHORT}/events`;
