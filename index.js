@@ -45,6 +45,15 @@ async function getEvents() {
     console.log(json);
     console.log(json.data);
 
+    state.events = json.data;
+
+    state.events.push({
+      id: 1,
+      name: "Blueberry Picking Party",
+      description: "We're gonna pick blueberries.",
+      date: "2024-03-23T12:30:00.000Z",
+      location: "123 Street Ave"
+    });
 
     console.log(state.events);
     state.events = json.data;
@@ -52,4 +61,13 @@ async function getEvents() {
   } catch (error) {
     console.log(error);
   }
+}
+
+function renderEvents() {
+  eventList.innerHTML = ""; // Clear previous events (suggested addition found online - thoughts?)
+  state.events.forEach(event => {
+    const eventItem = document.createElement("li");
+    eventItem.textContent = event.title; // Assuming each event has a 'title' property (suggested addition found online - thoughts?)
+    eventList.appendChild(eventItem);
+  });
 }
