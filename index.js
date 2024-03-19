@@ -39,12 +39,7 @@ async function getEvents() {
   try {
 
     const response = await fetch(API_URL);
-    console.log(response);
-
     const json = await response.json();
-    console.log(json);
-    console.log(json.data);
-
     state.events = json.data;
 
     state.events.push({
@@ -54,12 +49,8 @@ async function getEvents() {
       date: "2024-03-23T12:30:00.000Z",
       location: "123 Street Ave"
     });
-
-    console.log(state.events);
-    state.events = json.data;
-    console.log(state.events);
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching events:", error);
   }
 }
 
@@ -67,7 +58,26 @@ function renderEvents() {
   eventList.innerHTML = ""; // Clear previous events (suggested addition found online - thoughts?)
   state.events.forEach(event => {
     const eventItem = document.createElement("li");
-    eventItem.textContent = event.title; // Assuming each event has a 'title' property (suggested addition found online - thoughts?)
+    eventItem.textContent = `${event.name} ${event.description} ${event.date} ${event.location}`;
     eventList.appendChild(eventItem);
   });
+}
+
+/* found the below code online:
+my forms now submit & populate on the webpage.
+all this added text appears as well - Where is that coming from?
+*/
+function addEvent(event) {
+  event.preventDefault();
+  const formData = new FormData(addEventForm);
+  const newEvent = {
+    name: formData.get("name"),
+    description: formData.get("description"),
+    date: formData.get("date"),
+    time: formData.get("time"),
+    location: formData.get("location")
+  };
+  state.events.push(newEvent);
+  renderEvents();
+  addEventForm.reset();
 }
