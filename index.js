@@ -37,7 +37,7 @@ render();
 
 async function getEvents() {
   try {
-    
+
     const response = await fetch(API_URL);
     console.log(response);
 
